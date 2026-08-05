@@ -25,4 +25,13 @@ module.exports = (sequelize, DataTypes) => {
         tableName: 'komik',
         timestamps: true
     });
+
+        Komik.associate = (models) => {
+        Komik.belongsTo(models.Penulis, {
+            foreignKey: 'penulis_id',
+            as: 'penulis'
+        });
+
+    };
+    return Komik;
 };
