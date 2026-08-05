@@ -1,9 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
+    const Penulis = sequelize.define('Penulis', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
+        },
+        nama: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         email: {
             type: DataTypes.STRING,
@@ -12,9 +16,18 @@ module.exports = (sequelize, DataTypes) => {
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false,
-        }
+            allowNull: false
+        }   
+    }, {
+        tableName: 'penulis',
+        timestamps: true
     });
-    
-    return User;
+
+    Penulis.associate = (models) => {
+        Penulis.hasMany(models.Komik, {
+            foreignKey: 'penulis_id',
+            as: 'komik'
+        });
+    };
+    return Penulis;
 };
