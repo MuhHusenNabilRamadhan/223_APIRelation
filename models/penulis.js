@@ -29,5 +29,6 @@ module.exports = (sequelize, DataTypes) => {
             as: 'komik'
         });
     };
+    
     return Penulis;
 };
